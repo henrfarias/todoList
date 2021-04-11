@@ -10,7 +10,7 @@ const SectionTodoStyled = styled.section`
   width: clamp(280px, 100vw, 800px);
 `;
 
-const SectionTodo = ({ children }) => {
+const SectionTodo: React.FC = ({ children }) => {
   return (
     <SectionTodoStyled>
       { children }

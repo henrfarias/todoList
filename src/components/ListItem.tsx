@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IListItem } from '../Interfaces/index';
 
 const ListItemStyled = styled.li`
   display: flex;
@@ -36,12 +37,12 @@ const ListItemStyled = styled.li`
   }
 `;
 
-const ListItem = ({ 
+const ListItem: React.FC<IListItem> = ({ 
   label,
   onChange,
   id,
   checked,
-  children 
+  children
 }) => {
   
   return (

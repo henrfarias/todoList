@@ -52,15 +52,15 @@ const InputDiv = () => {
   
   const { newTask, setNewTask, tasks, setTasks } = useContext(TodoListContext);
 
-  const onChange = (event) => {
-    setNewTask(event.target.value);
+  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setNewTask && setNewTask(event.currentTarget.value);
   }
 
   const onClick = () => {
     if (newTask === ''){
       return;
     }
-    setTasks([...tasks, {task: newTask, done: false}]);
+    setTasks && setTasks([...tasks, {task: newTask, done: false}]);
   }
   
   return (
@@ -68,7 +68,6 @@ const InputDiv = () => {
       <input placeholder='add details' onChange={ onChange } />
       <button onClick={ onClick }>Add</button>
     </InputDivStyled>
-
   );
 }
 

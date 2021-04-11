@@ -1,14 +1,31 @@
 import React, { createContext, useState } from "react";
+import { ITasks } from '../../Interfaces/index';
 
-const TodoListContext = createContext({});
+interface TodoList {
+  newTask: string;
+  setNewTask?: React.Dispatch<string>
+  tasks: ITasks[];
+  setTasks?: React.Dispatch<ITasks[]>
+  tasksUpdate: Function;
+  deleteAllDoneTasks: Function;
+  deleteTask: Function;
 
-const TodoProvider = ({ children }) => {
+}
+
+const TodoListContext = createContext<TodoList>({
+  newTask: '',
+  tasks: [],
+  deleteAllDoneTasks: () => {},
+  tasksUpdate: () => {},
+  deleteTask: () => {},
+});
+
+const TodoProvider: React.FC = ({ children }) => {
   
   const [newTask, setNewTask] = useState(''); 
-  const [tasks, setTasks] = useState([])
-  const [taskDone, setTaskDone] = useState(false);
+  const [tasks, setTasks] = useState<ITasks[]>([]);
 
-  function tasksUpdate(index) {
+  function tasksUpdate(index:number) {
     if(!tasks[index].done) {
       tasks[index].done = true;
       setTasks([...tasks]);
@@ -19,7 +36,7 @@ const TodoProvider = ({ children }) => {
   }
 
   function deleteAllDoneTasks() {
-    const remainingTasks= []
+    const remainingTasks: ITasks[] = []
     tasks.map((task) => {
       if(!task.done) {
         remainingTasks.push(task);
@@ -29,7 +46,7 @@ const TodoProvider = ({ children }) => {
     setTasks([...remainingTasks]);
   }
 
-  function deleteTask(index) {
+  function deleteTask(index: number) {
     tasks.splice(index, 1);
     setTasks([...tasks]);
   }
@@ -42,10 +59,8 @@ const TodoProvider = ({ children }) => {
     <TodoListContext.Provider value={{
       newTask,
       tasks,
-      taskDone,
       setNewTask,
       setTasks,
-      setTaskDone,
       tasksUpdate,
       deleteAllDoneTasks,
       deleteTask

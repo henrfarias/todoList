@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { IDecorateMenu } from '../Interfaces/IDecorateMenu';
 import NavStyle from '../styles/NavStyle';
 
-const MenuBarStyled = styled.nav`
+const MenuBarStyled = styled.nav<IDecorateMenu>`
   display: flex;
   justify-content: space-around;
   
@@ -26,7 +27,7 @@ const MenuBarStyled = styled.nav`
 
 `;
 
-const MenuBar = ({ index }) => { 
+const MenuBar: React.FC<IDecorateMenu> = ({ index }) => { 
   return (
     <MenuBarStyled index={index}>
       <Link to='/'>All {index === '1' && <NavStyle />} </Link>

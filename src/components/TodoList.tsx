@@ -10,7 +10,7 @@ const TodoListStyled = styled.ul`
 
 `;
 
-const TodoList = ({ children }) => {
+const TodoList: React.FC = ({ children }) => {
   return (
     <TodoListStyled>
         {children}

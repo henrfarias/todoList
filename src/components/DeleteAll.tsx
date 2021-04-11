@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { TodoListContext } from '../context/TodoList';
+import { IDeleteButton } from '../Interfaces/index';
 
 const DeleteAllStyled = styled.button`
   display: flex;
@@ -26,10 +27,10 @@ const DeleteAllStyled = styled.button`
   }
 `;
 
-const DeleteAll = ({children, onClick}) => {
+const DeleteAll: React.FC<IDeleteButton> = ({children}) => {
 
   const { deleteAllDoneTasks } = useContext(TodoListContext);
-
+  
 
   return (
     <DeleteAllStyled onClick={() => deleteAllDoneTasks()}>
